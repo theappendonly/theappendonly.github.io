@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dan Johnston</title>
+<meta name="description" content="Append Only: finance analysis that shows its work. Credit and lending models by Dan Johnston.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+</head>
+<body>
+<main class="wrap">
+  <header class="about">
+    <img class="photo" id="photo" alt="">
+    <div class="intro">
+      <img class="handle" id="handle" src="img/handle.png" alt="">
+      <h1 id="name"></h1>
+      <p class="pitch" id="pitch"></p>
+      <div class="more" id="about"></div>
+      <nav class="links" id="links"></nav>
+    </div>
+  </header>
+
+  <section class="grid" id="grid" aria-label="Projects and writing"></section>
+
+  <footer>Built by hand, numbers from my own warehouse.</footer>
+</main>
+
+<script src="projects.js"></script>
+<script>
+  // Plain script tags (no fetch) so the page also works opened straight from disk.
+  const P = window.PROFILE, el = id => document.getElementById(id);
+  el("photo").src = P.photo; el("photo").alt = P.name;
+  el("handle").alt = P.handle;
+  el("name").textContent = P.name;
+  el("pitch").textContent = P.pitch;
+  for (const t of [].concat(P.about)) {
+    const p = document.createElement("p");
+    p.textContent = t;
+    el("about").append(p);
+  }
+  for (const l of P.links) {
+    const a = document.createElement("a");
+    a.href = l.url; a.textContent = l.label;
+    el("links").append(a);
+  }
+  for (const p of window.PROJECTS) {
+    const a = document.createElement("a");
+    a.className = "tile"; a.href = p.url;
+    if (/^https?:/.test(p.url)) { a.target = "_blank"; a.rel = "noopener"; }
+    a.innerHTML = `<img alt="" loading="lazy"><span class="tag"></span>
+      <div class="cap"><h2></h2><p></p></div>`;
+    a.querySelector("img").src = p.image;
+    a.querySelector(".tag").textContent = p.tag;
+    a.querySelector("h2").textContent = p.title;
+    a.querySelector("p").textContent = p.hook;
+    el("grid").append(a);
+  }
+</script>
+</body>
+</html>

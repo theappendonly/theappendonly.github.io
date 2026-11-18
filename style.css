@@ -1,0 +1,145 @@
+/* Colors and fonts match brand.py in the Social Media Streamlit App. */
+:root {
+  --bg: #0B1220;        /* wash */
+  --panel: #131C2E;
+  --text: #FFFFFF;
+  --muted: #C9CED6;
+  --accent: #F2A541;    /* amber */
+  --kicker: #FFD23F;
+  --gap: 16px;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 500 17px/1.55 "Barlow", system-ui, sans-serif;
+}
+a { color: inherit; }
+
+/* Centered column: the grid's center is always the page's center. */
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 16px 40px;
+}
+
+/* ---------- about ---------- */
+.about {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;   /* photo lines up with the name, not the middle of the bio */
+  margin-bottom: 56px;
+}
+.photo {
+  width: 220px;
+  aspect-ratio: 1;
+  flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--accent);
+  margin-top: 56px;   /* desktop: sits beside the name and greeting, not above them */
+}
+.handle {
+  display: block;
+  height: 84px;     /* Append Only wordmark, from the brand kit (social/wordmark_transparent_amber.png) */
+  width: auto;
+  margin: 0 0 4px -4px;
+}
+h1 {
+  margin: 0 0 8px;
+  font: 400 clamp(44px, 7vw, 76px)/1 "Anton", Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .01em;
+}
+.pitch { margin: 0 0 10px; font-size: 21px; font-weight: 600; }
+.more { margin: 0 0 20px; color: var(--muted); max-width: 78ch; }
+.more p { margin: 0 0 12px; }
+.more p:last-child { margin-bottom: 0; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.links a {
+  padding: 7px 16px;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background .15s, color .15s;
+}
+.links a:hover, .links a:focus-visible { background: var(--accent); color: var(--bg); }
+
+/* ---------- grid: 4 across, 2 on tablets, 1 on phones; always square ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+}
+.tile {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--panel);
+  text-decoration: none;
+  outline-offset: 3px;
+}
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .35s ease;
+}
+.tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.cap {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 48px 16px 16px;
+  background: linear-gradient(transparent, rgba(11, 18, 32, .92) 45%);
+}
+.cap h2 {
+  margin: 0;
+  font: 400 22px/1.1 "Anton", Impact, sans-serif;
+  text-transform: uppercase;
+}
+.cap p { margin: 6px 0 0; color: var(--muted); font-size: 15px; line-height: 1.35; }
+
+/* Hover devices: title always shows, the hook slides in on hover. Touch devices see both. */
+@media (hover: hover) {
+  .cap p { max-height: 0; opacity: 0; transition: max-height .3s ease, opacity .3s ease; }
+  .tile:hover .cap p, .tile:focus-visible .cap p { max-height: 6em; opacity: 1; }
+  .tile:hover img, .tile:focus-visible img { transform: scale(1.05); }
+}
+
+footer { margin-top: 48px; text-align: center; color: var(--muted); font-size: 14px; }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .about { gap: 28px; }
+  .photo { width: 170px; margin-top: 40px; }
+}
+@media (max-width: 560px) {
+  .wrap { padding-top: 36px; }
+  .grid { grid-template-columns: 1fr; }
+  .about { flex-direction: column; align-items: center; text-align: center; }
+  .photo { margin-top: 0; }
+  .links { justify-content: center; }
+  .handle { margin: 0 auto 8px; height: 64px; }
+  .more { margin-inline: auto; text-align: left; }   /* long paragraphs read badly centered */
+}
+@media (prefers-reduced-motion: reduce) {
+  .tile img, .cap p { transition: none; }
+}
