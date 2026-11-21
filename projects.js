@@ -33,7 +33,7 @@ window.PROJECTS = [
     url: "https://mortgagedefaultmodel-6xpczdpbz99ccevavqewwj.streamlit.app/" },
   { title: "Corporate Credit Ratings Model", tag: "Model", image: "img/credit-ratings.jpg",
     hook: "A Python model that rates companies from their filings, checked against the agencies.",
-    url: "https://danielscreditrating.streamlit.app" },
+    url: "https://credit-rating-app.streamlit.app/" },
   { title: "Does AI Make a Difference in Terminal Loan Value?", tag: "Article", image: "img/ai-lenders.jpg",
     hook: "Rocket ranked 14th of 20 Ohio lenders on yield. The thrift with no AI story came out on top.",
     url: "https://theappendonly.substack.com/p/does-ai-make-a-difference-in-terminal" },
